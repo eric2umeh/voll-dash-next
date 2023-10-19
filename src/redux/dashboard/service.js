@@ -7,6 +7,6 @@ export const adminUserApi = api.injectEndpoints({
         query: `${paths.getUsers}`,
       }),
     }),
-  });
+});
 export const { useGetUserListQuery } = adminUserApi;
   
