@@ -1,10 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import userReducer from "./features/counterSlice";
-import { userApi } from "./services/userApi";
+import counterReducer from "../redux/slice";
+import { userApi } from "../redux/userApi";
 import { setupListeners } from "@reduxjs/toolkit/dist/query";
-import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
-import type { RootState, AppDispatch } from "./store";
-
+import { useDispatch, useSelector } from "react-redux";
 
 export const store = configureStore({
   reducer: {
@@ -17,9 +15,5 @@ export const store = configureStore({
 
 setupListeners(store.dispatch);
 
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
-
-
-export const useAppDispatch = () => useDispatch<AppDispatch>();
-export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
+export const useAppDispatch = () => useDispatch();
+export const useAppSelector = useSelector;
