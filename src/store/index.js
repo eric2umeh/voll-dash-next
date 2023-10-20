@@ -1,42 +1,25 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { configureStore,combineReducers } from "@reduxjs/toolkit";
-import { persistReducer, persistStore } from "redux-persist";
-import { userSlice } from "../redux/dashboard/slice";
-import { api as admin } from "../redux/api";
-import { useDispatch, useSelector } from "react-redux";
-
-
-const reducers = combineReducers({
-[admin.reducerPath]: admin.reducer,
- user: userSlice.reducer
-
-})
-
-const persistConfig = {
-    key: "root",
-    version: 1,
-    storage: AsyncStorage,
-};
-  
-  const persistedReducer = persistReducer(persistConfig, reducers);
+import { configureStore } from "@reduxjs/toolkit";
+import userReducer from "./features/counterSlice";
+import { userApi } from "./services/userApi";
+import { setupListeners } from "@reduxjs/toolkit/dist/query";
+import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+import type { RootState, AppDispatch } from "./store";
 
 
 export const store = configureStore({
-    reducer: persistedReducer,
-    middleware: defaultMiddleware => [
-      ...defaultMiddleware({
-        serializableCheck: false, 
-        immutableCheck: false,
-    }),
-    admin.middleware,
-    
-],})
+  reducer: {
+    counterReducer,
+    [userApi.reducerPath]: userApi.reducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({}).concat([userApi.middleware]),
+});
 
-/**
- * install react-redux and AsyncStorage
- */
-
-export const persistor = persistStore(store);
 setupListeners(store.dispatch);
-export const useAppSelector = useSelector;
-export const useAppDispatch = useDispatch;
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
+
+
+export const useAppDispatch = () => useDispatch<AppDispatch>();
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;

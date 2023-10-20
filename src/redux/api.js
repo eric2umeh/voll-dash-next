@@ -1,25 +1,18 @@
-import { getBaseUrl } from "./services";
-import {
-  createApi,  
-  fetchBaseQuery,
-} from "@reduxjs/toolkit/query/react";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-const baseQuery = fetchBaseQuery({
-  baseUrl: getBaseUrl("admin"),
+
+export const userApi = createApi({
+  reducerPath: "userApi",
+  refetchOnFocus: true,
+  baseQuery: fetchBaseQuery({
+    baseUrl: "https://jsonplaceholder.typicode.com/",
+  }),
+  endpoints: (builder) => ({
+    getUsers: builder.query<User[], null>({
+      query: () => "users",
+    }),
+
+  }),
 });
 
-export const api = createApi({
-    reducerPath: "admin",
-    baseQuery,
-    tagTypes: [
-      "admin"   
-    ],
-    endpoints: () => ({}),
-  });
-  
-  export const enhancedApi = api.enhanceEndpoints({
-    endpoints: () => ({
-      getPost: () => "test",
-    }),
-  });
-  
+export const { useGetUsersQuery, useGetUserByIdQuery } = userApi;
