@@ -1,6 +1,6 @@
 "use client";import { useState } from 'react';
 import { useRouter } from 'next/navigation'
-import { isEmailValid, isPasswordValid } from '../../validation';
+import { isEmailValid, isPasswordValid } from '../../../validation';
 
 const Login = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
