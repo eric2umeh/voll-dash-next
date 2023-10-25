@@ -8,6 +8,7 @@ const SendOtp = () => {
   const [phoneError, setPhoneError] = useState('');
   const handleSubmit = async (e) => {
     e.preventDefault();
+    router.push('/verify');
   };
   return (
     <div className="min-h-screen flex items-center justify-center">

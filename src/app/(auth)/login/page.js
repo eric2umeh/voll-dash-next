@@ -1,4 +1,5 @@
-"use client";import { useState } from 'react';
+"use client";
+import { useState } from 'react';
 import { useRouter } from 'next/navigation'
 import { isEmailValid, isPasswordValid } from '../../../validation';
 
@@ -84,7 +85,7 @@ const Login = () => {
              
               <a
                 className="text-blue-500 hover:underline cursor-pointer"
-               
+                onClick={() => router.push('/signUp')}
               >
                 Sign Up
               </a>

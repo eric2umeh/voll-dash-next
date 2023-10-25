@@ -1,7 +1,6 @@
 "use client";
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { isEmailValid, isPasswordValid } from '../../../validation';
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -21,7 +20,7 @@ const SignUp = () => {
   const router = useRouter();
   const handleSubmit = async (e) => {
     e.preventDefault();
-    router.push('/Login');
+    router.push('/sendOtp');
   };
   return (
     <div className="min-h-screen flex items-center justify-center">

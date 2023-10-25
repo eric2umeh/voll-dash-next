@@ -18,18 +18,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <Providers>
       <body className={inter.className}>
-        <TopBar />
-
-        <main className="flex flex-row">
-          <LeftBar />
-          <section className="main-container">
-            <div className="w-full max-w-4xl">{children}</div>
-          </section>
-          {/* @ts-ignore */}
-          <RightBar />
-        </main>
-
-        <BottomBar />
+            <div>{children}</div>      
       </body>
         </Providers>
     </html>
