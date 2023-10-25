@@ -1,39 +1,18 @@
+
 "use client";
 
 import Table from "../../components/shared/Table";
 import { useGetUsersQuery } from "../../redux/userApi"
-
-// import Table from '@/components/shared/Table';
-
 export default function Home() {
   const { data, error } = useGetUsersQuery();
 
   
-
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  }
+  
 
   return (
     <>
       <h1>Home</h1>
       <Table />
-      
-      {data && data.length > 0 ? (
-        <ul>
-          {data.map((user) => (
-            <li key={user.id}>
-              <h2>{user.name}</h2>
-              <p>Email: {user.email}</p>
-              {/* Add more fields as needed */}
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>No users found.</p>
-      )}
-
-      
       {/* <div className=" ">
         <Button icon={{ src: '/assets/filter.svg', alt: 'logout' }}>
           Filters
