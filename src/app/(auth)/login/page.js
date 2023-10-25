@@ -11,23 +11,7 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if(formData.email === ""){
-      setEmailError('Enter a valid email address');
-      return;
-    }
-    if(formData.password === ""){
-      setPasswordError('Enter Password');
-      return;
-    }
-    if (!isEmailValid(formData.email)) {
-      setEmailError('Invalid email address');
-      return;
-    }
-
-    if (!isPasswordValid(formData.password)) {
-      setPasswordError('Password must be at least 8 characters long, contain an uppercase letter, a lowercase letter, and a special character.');
-      return;
-    }
+    router.push('/dashboard');
   };
 
   return (
