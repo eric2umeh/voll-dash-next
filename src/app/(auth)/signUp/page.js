@@ -1,7 +1,7 @@
 "use client";
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-
+import useSignUpUser from "../../hooks/signUp/signUp"
 const SignUp = () => {
   const [formData, setFormData] = useState({
     username: '',
@@ -18,10 +18,31 @@ const SignUp = () => {
   const [phoneError, setPhoneError] = useState('');
 
   const router = useRouter();
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    router.push('/sendOtp');
-  };
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+   
+  // };
+  const { statusMessage, addUser, loading,} = useSignUpUser();
+const handleSubmit =() => {
+  const payload = {
+    password: "1234567890",
+    email: "noel@gmail.com",
+    firstName: "john",
+    lastName : "doe",
+    howDidYouHearAboutUs: "facebook",
+    phone:"08121271091",
+    phoneCountryCode: "+234",
+    username: "neo",
+    deviceId
+    : "GWT2167632b3",
+    deviceType: "WEB",
+    notificationToken: "6aa739eb-aac5-c436-2f29-c5ddf5a23446aa739aeb-aac5-c436-2f29-c5ddf5a23d44"
+  
+  }
+addUser(payload)
+  router.push('/sendOtp');
+}
+ console.log("statusMessage", statusMessage)
   return (
     <div className="min-h-screen flex items-center justify-center">
       <div className="w-full max-w-md">
