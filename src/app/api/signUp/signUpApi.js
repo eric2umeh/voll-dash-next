@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-export const userApi = createApi({
-  reducerPath: "userApi",
+export const signUpApi = createApi({
+  reducerPath: "signUpApi",
   refetchOnFocus: true,
   baseQuery: fetchBaseQuery({
     baseUrl: "https://volla.getfyba.com/vola/v1/auth/register",
@@ -17,4 +17,4 @@ export const userApi = createApi({
   }),
 });
 
-export const { useSignUpMutation } = userApi;
+export const { useSignUpMutation } = signUpApi;

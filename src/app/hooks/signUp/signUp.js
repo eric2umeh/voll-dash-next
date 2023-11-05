@@ -24,13 +24,16 @@ const useSignUpUser = () => {
       }
     } catch (error) {
       setLoading(false);
-      console.error("error", error);
+  console.error("Error during API request:", error);
+  // Log additional context if available, e.g., request payload
+  console.error("Request Payload:", payload);
 
-      if (typeof error === "object" && error !== null && "responseMsg" in error) {
-        setStatusMessage(error);
-      } else {
-        setStatusMessage("Currently unable to process your request");
-      }
+  if (error.response && error.response.status) {
+    // Handle specific HTTP error codes
+    // ...
+  } else {
+    setStatusMessage("An unknown error occurred");
+  }
     }
   };
 
