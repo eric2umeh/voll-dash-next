@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useSignUpMutation } from '../../api/signUp/signUpApi';
 import { validationErrors } from '../../../validation';
+import { DeviceId, DeviceModel, DeviceOS, DeviceType, NotificationToken, PhoneCountryCode } from '../../../constants';
 const SignUp = () => {
   const [formData, setFormData] = useState({
     username: '',
@@ -23,12 +24,8 @@ const SignUp = () => {
 
   const router = useRouter();
   
-
   const [signUp, { isLoading, isError, error }] = useSignUpMutation();
-
-
   const validationError = validationErrors(formData);
-
 const handleSubmit = async (e) => {
   e.preventDefault();
   setUserNameError(validationError.userNameError || '');
@@ -48,19 +45,22 @@ const handleSubmit = async (e) => {
         lastName: formData?.lastName,
         howDidYouHearAboutUs:formData?.howDidYouHear,
         phone : formData?.phoneNumber,
-        phoneCountryCode: "+234",
+        phoneCountryCode: PhoneCountryCode,
         username: formData?.username,
-        deviceId: "GWT2167632b3",
-        deviceType: "ANDROID",
-        deviceOs: "IOS 16",
-        deviceModel: "Iphone 16",
-        notificationToken: "6aa739eb-aac5-c436-2f29-c5ddf5a23d446aa739eb-aac5-c436-2f29-c5ddf5a23d44"
+        deviceId: DeviceId,
+        deviceType: DeviceType,
+        deviceOs: DeviceOS,
+        deviceModel: DeviceModel,
+        notificationToken: NotificationToken
     }
       const response = await signUp(payload).unwrap();
+      console.log("response", response)
       if (response.error) {
-        console.error('API request failed:', response.error);
+        console.error('API request failed:', response?.error);
       } else {
         router.push('/sendOtp');
+        alert('Signup successful!', response?.message);
+        
       }
     } catch (error) {
       console.error('An error occurred:', error);

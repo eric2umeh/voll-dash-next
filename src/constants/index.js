@@ -70,3 +70,9 @@ export const sidebarLinks = [
   },
 ];
 
+export const PhoneCountryCode  = "+234"
+export const DeviceType = "WEB"
+export const DeviceModel = "website"
+export const DeviceId ="https//:localhost8080"
+export const DeviceOS ="port:url"
+export const NotificationToken = "6aa739eb-aac5-c436-2f29-c5ddf5a23d446aa739eb-aac5-c436-2f29-c5ddf5a23d44"
