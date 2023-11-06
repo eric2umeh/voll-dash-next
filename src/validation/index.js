@@ -42,7 +42,7 @@ export const isEmailValid = (email) => {
     }
   
     if (formData.howDidYouHear.trim() === '') {
-      errors.howDidYouHearError = 'Field is required';
+      errors.howDidYouHearError = 'Field is required and must begin with a Capital Letter';
     }
   
     return errors;
