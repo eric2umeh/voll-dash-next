@@ -38,6 +38,9 @@ const handleSubmit = async (e) => {
 
   if (Object.keys(validationError).length === 0) {
     try {
+      /** 
+       * payload request
+       *  */ 
       const payload = {
         password: formData?.password,
         email: formData?.email,
