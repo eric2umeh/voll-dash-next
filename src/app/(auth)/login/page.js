@@ -3,15 +3,19 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation'
 import { isEmailValid, isPasswordValid } from '../../../validation';
 
+
 const Login = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const router = useRouter();
 
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     router.push('/dashboard');
+    console.log("Iam here")
+   
   };
 
   return (
