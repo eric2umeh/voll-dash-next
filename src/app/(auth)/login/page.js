@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation'
 import { isEmailValid, isPasswordValid } from '../../../validation';
-
+import {useLoginMutation} from "../../api/login/loginApi"
 
 const Login = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
@@ -10,14 +10,38 @@ const Login = () => {
   const [passwordError, setPasswordError] = useState('');
   const router = useRouter();
 
-  
+  const [login, { isLoading, isError, error }] = useLoginMutation();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    router.push('/dashboard');
-    console.log("Iam here")
-   
+    setEmailError(validationError.emailError || '');
+    setPasswordError(validationError.passwordError || '');
+  
+  
+    if (Object.keys(validationError).length === 0) {
+      try {
+        /** 
+         * payload request
+         *  */ 
+        const payload = {
+          password: formData?.password,
+          email: formData?.email,
+         
+      }
+        const response = await login(payload).unwrap();
+        console.log("response", response)
+        if (response.error) {
+          console.error('API request failed:', response?.error);
+        } else {
+          router.push('/dashboard');
+          alert('login successful!', response?.message);
+          
+        }
+      } catch (error) {
+        console.error('An error occurred:', error);
+      }
+    }
   };
-
   return (
     <div className="min-h-screen flex items-center justify-center">
       <div className="w-full max-w-md">
