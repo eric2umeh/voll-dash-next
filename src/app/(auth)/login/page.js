@@ -72,7 +72,7 @@ const Login = () => {
               value={formData.email}
               onChange={(e) => {
                 setFormData({ ...formData, email: e.target.value });
-                setEmailError('');
+                  setEmailError('');
               }}
             />
             {emailError && <p className="text-red-500 text-xs mt-2">{emailError}</p>}
