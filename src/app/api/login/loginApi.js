@@ -4,7 +4,7 @@ export const loginApi = createApi({
   reducerPath: "signUpApi",
   refetchOnFocus: false,
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://volla.getfyba.com/vola/v1/auth/register",
+    baseUrl: "https://volla.getfyba.com/vola/v1/auth/login",
   }),
   endpoints: (builder) => ({
    login: builder.mutation({

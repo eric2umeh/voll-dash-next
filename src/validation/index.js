@@ -47,3 +47,29 @@ export const isEmailValid = (email) => {
   
     return errors;
   };
+
+  export const validationField = (formData) => {
+    const errors = {};
+  
+   
+  
+    if (formData.email.trim() === '') {
+      errors.emailError = 'Email is required';
+    } else if (!isEmailValid(formData.email)) {
+      errors.emailError = 'Invalid email format';
+    }
+  
+    if (formData.password.trim() === '') {
+      errors.passwordError = 'Password is required';
+     } 
+     if (formData.otp.trim() === '') {
+      errors.otpError = 'otp is required';
+     } 
+    // else if (!isPasswordValid(formData.password)) {
+    //   errors.passwordError = 'Invalid password format';
+    // }
+  
+   
+  
+    return errors;
+  };
