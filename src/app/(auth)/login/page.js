@@ -37,7 +37,7 @@ const Login = () => {
               value={formData.email}
               onChange={(e) => {
                 setFormData({ ...formData, email: e.target.value });
-                setEmailError('');
+                  setEmailError('');
               }}
             />
             {emailError && <p className="text-red-500 text-xs mt-2">{emailError}</p>}
@@ -61,7 +61,7 @@ const Login = () => {
             />
             {passwordError && <p className="text-red-500 text-xs mt-2">{passwordError}</p>}
           </div>
-          <div className="flex items-center justify-between">
+                                            <div className="flex items-center justify-between">
             <button
               type="submit"
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
