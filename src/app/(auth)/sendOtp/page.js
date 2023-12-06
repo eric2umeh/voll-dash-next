@@ -6,6 +6,7 @@ const SendOtp = () => {
     phoneNumber: '',
   });
   const [phoneError, setPhoneError] = useState('');
+  const [signUp, { isLoading, isError, error }] = useSignUpMutation();
   const handleSubmit = async (e) => {
     e.preventDefault();
     router.push('/verify');
